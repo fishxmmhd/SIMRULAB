@@ -16,6 +16,8 @@
     "datatables.net-responsive-dt": "^2.2.1",
     "datatables.net-rowgroup-dt": "^1.0.2",
     "datatables.net-scroller-dt": "^1.4.4",
-    "datatables.net-select-dt": "^1.2.5"
+    "datatables.net-select-dt": "^1.2.5",
+    "moment": "^2.22.2",
+    "toastr": "^2.1.4"
   }
 }

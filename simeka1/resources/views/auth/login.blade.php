@@ -5,9 +5,9 @@
 @endsection
  
 @section('content')
-<body id="bg-img-section" class="hold-transition login-page">
+<body id="bg-img-section">
     <div class="login-box">
-        <div class="login-logo">
+        <div class="login-logo" style="margin-top: 75px">
             <a href="{{ url('/login') }}"><b>SIMRULAB</b></a>
         </div><!-- /.login-logo -->
 
@@ -64,10 +64,15 @@
                         <input type="checkbox" name="remember"> {{ trans('adminlte_lang::message.remember') }}
                     </label>
                 </div>
-            </div><!-- /.col --> 
+            </div><!/.col --> 
             <div class="col-xs-12">
                 <button type="submit" class="btn btn-primary btn-block">{{ trans('adminlte_lang::message.buttonsign') }}</button>
             </div><!-- /.col -->
+        </div>
+        <div style="margin-top: 20px"> 
+            <div style="margin-left: 30px">
+                <strong>&copy; 2018 Departemen Ilmu Komputer IPB</strong>
+            </div>
         </div>
     </form>
 

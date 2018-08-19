@@ -8,7 +8,7 @@
 
     <body id="bg-img-section" class="hold-transition register-page">
     <div class="register-box">
-        <div class="register-logo">
+        <div class="register-logo" style="margin-top: 75px">
             <a href="{{ url('/register') }}"><b>SIMRULAB</b></a>
         </div>
 
@@ -76,12 +76,12 @@
                             </div>
                         </label>
                     </div><!-- /.col -->
-                    <div class="col-xs-6">
+                    <div class="col-xs-8">
                         <div class="form-group">
                             <button type="button" class="btn btn-block btn-flat" data-toggle="modal" data-target="#termsModal">{{ trans('adminlte_lang::message.terms') }}</button>
                         </div>
                     </div><!-- /.col -->
-                    <div class="col-xs-4 col-xs-push-1">
+                    <div class="col-xs-12">
                         <button type="submit" class="btn btn-primary btn-block btn-flat">{{ trans('adminlte_lang::message.register') }}</button>
                     </div><!-- /.col -->
                 </div>

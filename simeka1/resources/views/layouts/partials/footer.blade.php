@@ -20,8 +20,8 @@
 <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-        <a href="https://github.com/acacha/adminlte-laravel"></a><b>SIMRULAB</b></a>
+        <a href="https://github.com/acacha/adminlte-laravel"></a></a>
     </div>
     <!-- Default to the left -->
-    <strong>Maulana Mhd Hafiz &copy; Ilmu Komputer IPB 2018 </strong>
+    <strong>Departemen Ilmu Komputer IPB </strong>
 </footer>

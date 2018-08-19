@@ -19,6 +19,8 @@ class CreatePemakaiansTable extends Migration
             $table->integer('kegiatan_id')->unsigned();
             $table->datetime('tanggal_mulai');
             $table->datetime('tanggal_selesai');
+            $table->integer('status');
+            $table->string('deskripsi');
             $table->timestamps();
         });
     }

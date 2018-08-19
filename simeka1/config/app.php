@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Jakarta',
 
     /*
     |--------------------------------------------------------------------------
@@ -156,6 +156,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+       /* Barryvdh\DomPDF\ServiceProvider::class,*/
         // MaddHatter\LaravelFullcalendar\ServiceProvider::class,
 
     ],
@@ -204,6 +205,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'AdminLTE' => Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
+        /*'PDF' => Barryvdh\DomPDF\Facade::class,*/
         // 'fullcalendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
         
     ],

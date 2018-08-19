@@ -36,6 +36,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('/plugins/datatables/dataTables.bootstrap.min.css') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -43,83 +44,104 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
     <script src="{{ asset('/js/smssoothscroll.js') }}"></script>
 
 
-</head>
+  </head>
 
-<body data-spy="scroll" data-offset="0" data-target="#navigation">
-
-<!-- Fixed navbar -->
-<div id="navigation" class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid full">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+  <body>
+    <section class="content">
+      <!-- Fixed navbar -->
+      <div id="navigation" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid full">
+          <div class="navbar-header">
+           <!--  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/"><b>SIMRULAB</b></a>
+          -->   <a class="navbar-brand" href="/"><b>SIMRULAB</b></a>
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}">{{ trans('adminlte_lang::message.login') }}</a></li>
-                    <li><a href="{{ url('/register') }}">{{ trans('adminlte_lang::message.register') }}</a></li>
-                @else
-                    <li><a href="/home">{{ Auth::user()->name }}</a></li>
-                @endif
-            </ul>
+          <ul class="nav navbar-nav navbar-right">
+            @if (Auth::guest())
+            <li><a href="{{ url('/login') }}">{{ trans('adminlte_lang::message.login') }}</a></li>
+            <li><a href="{{ url('/register') }}">{{ trans('adminlte_lang::message.register') }}</a></li>
+            @else
+            <li><a href="/home">{{ Auth::user()->name }}</a></li>
+            @endif
+          </ul>
         </div><!--/.nav-collapse -->
-    </div>
-</div>
-
-        <!-- <div id="bg-img-section"> -->
-          <div class="box">
-            <div class="box-header">
-            <div class="container">
-                <div class="bg-img">
-                   <h2>Informasi Ruangan</h2>
-                      <div class="row table-center">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                  <div class="x-panel">
-                        <table class="table table-striped table-bordered">
-                          <thead>
-                            <tr>
-                              <th>No</th>
-                              <th>Tanggal</th>
-                              <th>Waktu Mulai</th>
-                              <th>Waktu Selesai</th>
-                              <th>Nama Ruangan</th>
-                              <th>Jenis Kegiatan</th>
-                              <th>Deskripsi</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <?php $number=0 ?> 
-                            @foreach($data['pemakaian'] as $pemakaian)
-                            <?php $number++?>  
-                              <tr>
-                                <td>{{$number}}</td>
-                                <td>{{date("d-m-Y",strtotime($pemakaian['tanggal_mulai']))}}</td>
-                                <td>{{date("H:i",strtotime($pemakaian['tanggal_mulai']))}}</td>
-                                <td>{{date("H:i",strtotime($pemakaian['tanggal_selesai']))}}</td>
-                                <td>{{$pemakaian['nama_ruangan']}}</td>
-                                <td>{{$pemakaian['jenis_kegiatan']}}</td>
-                                <td>deskripsi blm di masukin wkkw</td>
-                              </tr>
-                            @endforeach
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                </div>
-            </div>
-        </div>
       </div>
     </div>
 
-
+    <!-- <div id="bg-img-section"> -->
+      <div class="box">
+        <div class="box-header">
+          <div class="container-fluid">
+           <h2>Informasi Ruangan</h2>
+           
+                    <!-- <input class="form-control" id="dataTable" type="text" placeholder=" ">
+                     -->  <!-- <div class="row table-center">
+                     --> 
+                     <div class="panel-body">
+                    <!--     <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="x-panel">
+                  --><div class="table-responsive">
+                    <table id="example1" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Tanggal</th>
+                          <th>Waktu Mulai</th>
+                          <th>Waktu Selesai</th>
+                          <th>Nama Ruangan</th>
+                          <th>Jenis Kegiatan</th>
+                          <th>Deskripsi</th>
+                          <th>Pemakai</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php $number=0 ?> 
+                        @foreach($data['pemakaian'] as $pemakaian)
+                        <?php $number++?>  
+                        <tr>
+                          <td>{{$number}}</td>
+                          <td>{{date("d-m-Y",strtotime($pemakaian['tanggal_mulai']))}}</td>
+                          <td>{{date("H:i",strtotime($pemakaian['tanggal_mulai']))}}</td>
+                          <td>{{date("H:i",strtotime($pemakaian['tanggal_selesai']))}}</td>
+                          <td>{{$pemakaian['nama_ruangan']}}</td>
+                          <td>{{$pemakaian['jenis_kegiatan']}}</td>
+                          <td>{{$pemakaian['deskripsi']}}</td>
+                          <td>{{$pemakaian['name']}}</td>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </section>
+        @section('scripts')
+        @include('layouts.partials.scripts')
+        
+        @show
+        <script>
+          $(function () {
+            $('#example1').DataTable()
+            $('#example2').DataTable({
+              'paging'      : true,
+              'lengthChange': false,
+              'searching'   : false,
+              'ordering'    : true,
+              'info'        : true,
+              'autoWidth'   : false
+            })
+          })
+        </script>
 <!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
 
 </body>
 </html>

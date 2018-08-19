@@ -6,7 +6,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <html lang="en">
 
 @section('htmlheader')
-    @include('layouts.partials.htmlheader')
+@include('layouts.partials.htmlheader')
 @show
 
 <!--
@@ -30,38 +30,94 @@ desired effect
 |---------------------------------------------------------|
 -->
 <body class="skin-blue sidebar-mini">
-<div class="wrapper">
+    <div class="wrapper">
 
-    @include('layouts.partials.mainheader')
+        @include('layouts.partials.mainheader')
 
-    @if(Auth::user()->role==2)
+        @if(Auth::user()->role==2)
         @include('layouts.partials.sidebar')
-    @else
+        @else
         @include('layouts.partials.sidebaruser')
-    @endif
+        @endif
 
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-
-        @include('layouts.partials.contentheader')
-
-        <!-- Main content -->
-        <section class="content">
-            <!-- Your Page Content Here -->
-            @yield('main-content')
-        </section><!-- /.content -->
-    </div><!-- /.content-wrapper -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
 
 
-    @include('layouts.partials.footer')
+            <!-- Main content -->
+            <section class="content">
+                <!-- Your Page Content Here -->
+                @yield('main-content')
+            </section><!-- /.content -->
+        </div><!-- /.content-wrapper -->
 
-</div><!-- ./wrapper -->
 
-@section('scripts')
-    @include('layouts.partials.scripts')
-    
-@show
+        @include('layouts.partials.footer')
+
+    </div><!-- ./wrapper -->
+
+    @section('scripts')<!-- 
+    @include('layouts.partials.scripts') -->
+    <script>
+      $('#rekapdata').change(function(){
+        var ruangan = document.getElementById('rekapdata').value
+        console.log(ruangan)
+        var url = "/status/rekap/"+ ruangan
+        $.ajax({url: url}).done(function(result){
+          var data = result.data
+          var htmlData = ''
+          for(var i=0; i<data['pemakaian'].length; i++){
+            htmlData += 
+                '<tr>'+
+                '<td>'+ (i+1) +'</td>'+
+                '<td>'+ data['pemakaian'][i].tanggal_mulai +'</td>'+
+                '<td>'+ data['pemakaian'][i].tanggal_mulai +'</td>'+
+                '<td>'+ data['pemakaian'][i].tanggal_selesai +'</td>'+
+                '<td>'+ data['ruangan'][i].nama_ruangan +'</td>'+
+                '<td>'+ data['pemakaian'][i].jenis_kegiatan +'</td>'+
+                '<td>'+ data['user'][i].name +'</td>'+
+                '<td>'+ data['pemakaian'][i].deskripsi +'</td>'
+           if(data['pemakaian'][i].status == 1){
+              htmlData += '<td>Diterima</td>'
+           }else{
+              htmlData += '<td>Ditolak</td><td>'+
+                          '<form action="status/'+ data['pemakaian'][i].id +'" method="put">' + 
+                            '<input type="submit" name="status" value="Diterima" class="btn btn-success btn-sm">' +
+                            '<input type="submit" name="status" value="Ditolak" class="btn btn-warning btn-sm">'+
+                           '</form></td>'
+           }
+           htmlData += '</tr>'
+          }
+          console.log(data['pemakaian'])
+          document.getElementById('pemakaian-info').innerHtml = htmlData
+        })
+      })  
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable( {
+                dom: 'Bfrtip',
+                buttons: [
+                'csv', 'excel', 'pdf'
+                ]
+            } );
+        } );
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#example1lagi').DataTable( {
+                dom: 'Bfrtip',
+                buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            } );
+        } );
+    </script>
+
+    @show
 
 </body>
 </html>

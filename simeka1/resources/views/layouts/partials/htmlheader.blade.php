@@ -21,7 +21,7 @@
     <link href="{{ asset('/plugins/iCheck/square/blue.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{asset('/plugins/fullcalendar/jquery.dataTables.css')}}">
     <link rel="stylesheet" href="{{asset('/plugins/fullcalendar/fullcalendar.min.css')}}">
-
+    <link rel="stylesheet" href="{{asset('/plugins/timepicker/bootstrap-timepicker.min.css')}}">
     <!-- <script type="/public/plugins/fullcalendar/lib/jquery.min.js"></script> -->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
